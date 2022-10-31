@@ -17,9 +17,6 @@
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpSelection"
-            android:exported="false" />
-        <activity
             android:name=".SelectGymActivity"
             android:exported="false" />
         <activity
