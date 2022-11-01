@@ -6,4 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".SelectGymActivity">
 
+
+    <TextView
+        android:id="@+id/Welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/TEXTRIGHT"
+        android:layout_marginTop="@dimen/TEXTTOP"
+        android:text="Select Gym"
+        android:textColor="@color/secondaryDarkColor"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/community"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="170dp"
+        android:text="COMMUNITY"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/birchwood"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="270dp"
+        android:text="BIRCHWOOD"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ymca"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="378dp"
+        android:text="YMCA"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
