@@ -1,5 +1,8 @@
 package com.example.opengymapp;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class Gym {
     private String gymName;
     private int numCourts;
@@ -13,6 +16,19 @@ public class Gym {
         this.hour = hour;
         this.docID = docID;
     }
+    public static final Parcelable.Creator<Gym> CREATOR = new
+            Parcelable.Creator<Gym>() {
+
+                @Override
+                public Gym createFromParcel(Parcel parcel) {
+                    return new Gym(parcel);
+                }
+
+                @Override
+                public Gym[] newArray(int size) {
+                    return new Gym[0];
+                }
+            };
 
     public Gym(String gymName, int numCourts, String address) {
         this.gymName = gymName;
@@ -22,6 +38,22 @@ public class Gym {
         this.hour = hour;
         this.docID = "No docID yet";
     }
+    public Gym(Parcel parcel) {
+        gymName = parcel.readString();
+        numCourts = parcel.readInt();
+        address = parcel.readString();
+        playerName = parcel.readString();
+        hour = parcel.readString();
+        docID = parcel.readString();
+    }
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(gymName);
+        dest.writeInt(numCourts);
+        dest.writeString(address);
+        dest.writeString(playerName);
+        dest.writeString(hour);
+        dest.writeString(docID);
+    }
 
 
     // A default constructor is required for the Parcelable interface to work
@@ -29,9 +61,13 @@ public class Gym {
         gymName = "No name";
         numCourts = 0;
         address = "No address";
-        playerName = ";
+        playerName = "";
         hour = "";
         this.docID = "No docID yet";
+    }
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public String getGymName() {
