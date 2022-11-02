@@ -3,14 +3,14 @@ package com.example.opengymapp;
 public class Gym {
     private String gymName;
     private int numCourts;
-    private String address;
-    private String docID;
+    private String address, playerName, hour, docID;
 
-
-    public Gym(String gymName, int numCourts, String address, String docID) {
+    public Gym(String gymName, int numCourts, String address, String playerName, String hour, String docID) {
         this.gymName = gymName;
         this.numCourts = numCourts;
         this.address = address;
+        this.playerName = playerName;
+        this.hour = hour;
         this.docID = docID;
     }
 
@@ -18,15 +18,19 @@ public class Gym {
         this.gymName = gymName;
         this.numCourts = numCourts;
         this.address = address;
+        this.playerName = playerName;
+        this.hour = hour;
         this.docID = "No docID yet";
     }
 
 
-    // A default constructor is required for the Parceable interface to work
+    // A default constructor is required for the Parcelable interface to work
     public Gym() {
         gymName = "No name";
         numCourts = 0;
         address = "No address";
+        playerName = ";
+        hour = "";
         this.docID = "No docID yet";
     }
 
@@ -60,5 +64,21 @@ public class Gym {
 
     public void setDocID(String docID) {
         this.docID = docID;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 }
