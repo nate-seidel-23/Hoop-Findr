@@ -4,4 +4,5 @@
     <dimen name="TEXTTOP">40dp</dimen>
     <dimen name="logoTop">40dp</dimen>
     <dimen name="logoLeft">40dp</dimen>
+    <dimen name="margin">25dp</dimen>
 </resources>

@@ -3,7 +3,7 @@ package com.example.opengymapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Gym {
+public class Gym implements Parcelable{
     private String gymName;
     private int numCourts;
     private String address, playerName, hour, docID;
