@@ -17,7 +17,7 @@
             android:name=".ViewReservationsActivity"
             android:exported="false" />
         <activity
-            android:name=".DecisionActivity"
+            android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
             android:name=".SelectGymActivity"
