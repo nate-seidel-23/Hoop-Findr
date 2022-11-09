@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GymInformationActivity">
+
+    <TextView
+        android:id="@+id/gymName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gym Name"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_gravity="center"
+        android:textSize="44sp"
+        tools:layout_editor_absoluteX="177dp"
+        tools:layout_editor_absoluteY="53dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:text="Monday - Friday: 5-8 PM" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:textSize="20sp"
+        android:text="Saturday - Sunday: 5-8 PM" />
+
+    <Button
+        android:id="@+id/viewReservationButton"
+        android:onClick="viewReservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="View Reservation" />
+
+    <Button
+        android:id="@+id/createReservationButton"
+        android:onClick="createReservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="Create Reservation" />
+
+    <Button
+        android:id="@+id/viewOnMapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="View on Map" />
+</androidx.appcompat.widget.LinearLayoutCompat>

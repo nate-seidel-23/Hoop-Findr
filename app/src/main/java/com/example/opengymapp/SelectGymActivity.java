@@ -14,11 +14,7 @@ public class SelectGymActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_gym);
     }
 
-    public void createReservation(View view) {
-        Intent intent = new Intent(SelectGymActivity.this, CreateReservationActivity.class);
-        startActivity(intent);
-    }
-
+    
 
 
 }
