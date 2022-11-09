@@ -14,7 +14,7 @@ public class SelectGymActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_gym);
     }
 
-    
+
 
 
 }
