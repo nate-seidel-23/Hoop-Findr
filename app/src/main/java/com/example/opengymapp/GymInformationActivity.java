@@ -15,12 +15,21 @@ public class GymInformationActivity extends AppCompatActivity {
     }
 
     public void createReservation(View view) {
-        Intent intent = new Intent(GymInformationActivity.this, CreateReservationActivity.class);
+        Intent intent = new Intent(GymInformationActivity.this,
+                CreateReservationActivity.class);
         startActivity(intent);
     }
 
     public void viewReservation(View view){
-        Intent intent = new Intent(GymInformationActivity.this, ViewReservationsActivity.class);
+        Intent intent = new Intent(GymInformationActivity.this,
+                ViewReservationsActivity.class);
+        startActivity(intent);
+    }
+
+    public void viewMap(View view){
+        Intent intent = new Intent(GymInformationActivity.this,
+                ViewReservationsActivity.class);
+        startActivity(intent);
     }
 
 }

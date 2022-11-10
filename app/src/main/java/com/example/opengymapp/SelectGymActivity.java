@@ -14,6 +14,12 @@ public class SelectGymActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_gym);
     }
 
+    public void gymSelected(View view){
+        Intent intent = new Intent(SelectGymActivity.this,
+                GymInformationActivity.class);
+        startActivity(intent);
+    }
+
 
 
 

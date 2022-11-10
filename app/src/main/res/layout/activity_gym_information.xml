@@ -43,7 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:text="View Reservation" />
+        android:text="View Reservation"
+
+        />
 
     <Button
         android:id="@+id/createReservationButton"
@@ -60,5 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:text="View on Map" />
+        android:text="View on Map"
+        android:onClick="viewMap"/>
 </androidx.appcompat.widget.LinearLayoutCompat>

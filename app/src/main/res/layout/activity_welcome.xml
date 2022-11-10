@@ -42,7 +42,9 @@
         android:layout_marginTop="420dp"
         android:text="Log In"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="logInClicked"
+        />
 
     <Button
         android:id="@+id/signUp"
@@ -52,7 +54,9 @@
         android:layout_marginTop="350dp"
         android:text="Sign Up"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="logInClicked"
+        />
 
     <ImageView
         android:id="@+id/imageView"
