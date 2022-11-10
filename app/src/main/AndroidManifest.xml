@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenGymApp"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAVfRQ-zcHxlvNMSm6WHCFE5D_BcLcYtp0"
+            ></meta-data>
         <activity
             android:name=".Maps"
             android:exported="false" />
