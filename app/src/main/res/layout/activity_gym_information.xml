@@ -34,7 +34,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:textSize="20sp"
-        android:text="Saturday - Sunday: 5-8 PM" />
+        android:text="Saturday - Sunday: 1-6 PM" />
 
     <Button
         android:id="@+id/viewReservationButton"
