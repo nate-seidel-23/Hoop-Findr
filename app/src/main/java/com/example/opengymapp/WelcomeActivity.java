@@ -15,14 +15,14 @@ public class WelcomeActivity extends AppCompatActivity {
 
     String userName, password;
 
-    public static FirebaseHelper firebaseHelper;
+//    public static FirebaseHelper firebaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        firebaseHelper = new FirebaseHelper();
+//        firebaseHelper = new FirebaseHelper();
         logInB = findViewById(R.id.logIn);
         signUpB = findViewById(R.id.signUp);
         emailET = findViewById(R.id.email);

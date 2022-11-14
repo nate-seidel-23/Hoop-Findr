@@ -33,7 +33,7 @@ public class CreateReservationActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_create_reservation);
 
-            Button button = (Button) findViewById(R.id.button);
+            Button button = (Button) findViewById(R.id.dateButton);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -9,23 +9,24 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/dateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_centerVertical="true"
+        android:onClick=""
         android:text="open date picker" />
 
-    <ScrollView
-        android:layout_width="350dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center">
+<!--    <ScrollView-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="400dp"-->
+<!--        android:layout_gravity="center">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical" />-->
+<!--    </ScrollView>-->
 
 </androidx.appcompat.widget.LinearLayoutCompat>
