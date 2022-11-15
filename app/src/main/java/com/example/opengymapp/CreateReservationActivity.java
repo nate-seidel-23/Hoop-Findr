@@ -22,11 +22,8 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class CreateReservationActivity extends AppCompatActivity {
+public class CreateReservationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-
-
-    public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +51,4 @@ public class CreateReservationActivity extends AppCompatActivity {
             TextView textView = (TextView) findViewById(R.id.textView);
             textView.setText(currentDateString);
         }
-    }
 }

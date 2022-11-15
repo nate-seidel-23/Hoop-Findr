@@ -15,10 +15,19 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_centerVertical="true"
-        android:onClick=""
         android:text="open date picker" />
 
-<!--    <ScrollView-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="TextView"
+        android:textColor="@color/primaryColor"
+        android:textSize="@dimen/TEXTRIGHT"
+        android:textStyle="bold" />
+
+    <!--    <ScrollView-->
 <!--        android:layout_width="350dp"-->
 <!--        android:layout_height="400dp"-->
 <!--        android:layout_gravity="center">-->
