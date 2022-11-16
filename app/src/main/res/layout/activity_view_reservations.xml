@@ -11,10 +11,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/margin"
         android:text="My Reservations"
+        android:textColor="@color/primaryColor"
         android:textSize="40sp"
-        android:layout_gravity="center" />
+        android:textStyle="bold" />
 
 
     <ScrollView

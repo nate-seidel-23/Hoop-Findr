@@ -11,10 +11,12 @@
         android:id="@+id/gymName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gym Name"
-        android:layout_marginTop="@dimen/margin"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin"
+        android:text="Gym Name"
+        android:textColor="@color/primaryColor"
         android:textSize="44sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="177dp"
         tools:layout_editor_absoluteY="53dp" />
 
@@ -24,8 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
+        android:text="Monday - Friday: 5-8 PM"
+        android:textColor="@color/primaryColor"
         android:textSize="20sp"
-        android:text="Monday - Friday: 5-8 PM" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView4"
@@ -33,28 +37,31 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
+        android:text="Saturday - Sunday: 1-6 PM"
+        android:textColor="@color/primaryColor"
         android:textSize="20sp"
-        android:text="Saturday - Sunday: 1-6 PM" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/viewReservationButton"
-        android:onClick="viewReservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
+        android:onClick="viewReservation"
         android:text="View Reservation"
 
-        />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/createReservationButton"
-        android:onClick="createReservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:text="Create Reservation" />
+        android:onClick="createReservation"
+        android:text="Create Reservation"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/viewOnMapButton"
@@ -62,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
+        android:onClick="viewMap"
         android:text="View on Map"
-        android:onClick="viewMap"/>
+        android:textStyle="bold" />
 </androidx.appcompat.widget.LinearLayoutCompat>

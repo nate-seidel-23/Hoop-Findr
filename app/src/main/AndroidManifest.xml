@@ -13,10 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenGymApp"
         tools:targetApi="31">
+        <activity
+            android:name=".SignOut"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAVfRQ-zcHxlvNMSm6WHCFE5D_BcLcYtp0"
-            ></meta-data>
+            android:value="AIzaSyAVfRQ-zcHxlvNMSm6WHCFE5D_BcLcYtp0" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
         <activity
             android:name=".GymInformationActivity"
             android:exported="false" />
