@@ -13,6 +13,7 @@ import android.view.View;
 
 public class SelectGymActivity extends AppCompatActivity {
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

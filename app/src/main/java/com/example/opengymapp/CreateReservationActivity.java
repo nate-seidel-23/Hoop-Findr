@@ -1,5 +1,6 @@
 package com.example.opengymapp;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -25,10 +26,13 @@ import java.util.Calendar;
 public class CreateReservationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
 
+        @SuppressLint("RestrictedApi")
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_create_reservation);
+
+            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
             Button button = (Button) findViewById(R.id.dateButton);
             button.setOnClickListener(new View.OnClickListener() {
@@ -51,4 +55,5 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             TextView textView = (TextView) findViewById(R.id.textView);
             textView.setText(currentDateString);
         }
+
 }

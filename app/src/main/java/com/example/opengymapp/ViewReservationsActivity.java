@@ -12,6 +12,6 @@ public class ViewReservationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reservations);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
     }
 }
