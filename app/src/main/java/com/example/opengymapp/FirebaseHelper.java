@@ -47,11 +47,18 @@ public class FirebaseHelper {
     public final String TAG = "Denna";
     private static String uid = null;      // var will be updated for currently signed in user
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private ArrayList<Gym> reservations;
+    // we don't need this yet
+    // private ArrayList<Memory> myItems = new ArrayList<>();
 
 
     public FirebaseHelper() {
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        reservations = new ArrayList<>();                 //instantiate arrayList
     }
+
 
 
     public FirebaseAuth getmAuth() {
@@ -68,3 +75,183 @@ public class FirebaseHelper {
         this.uid = uid;
     }
 
+
+    public void attachReadDataToUser() {
+        // This is necessary to avoid the issues we ran into with data displaying before it
+        // returned from the asynch method calls
+        if (mAuth.getCurrentUser() != null) {
+            uid = mAuth.getUid();
+            readData(new FirestoreCallback() {
+                @Override
+                public void onCallback(ArrayList<Gym> memoryList) {
+                    Log.d(TAG, "Inside attachReadDataToUser, onCallback " + memoryList.toString());
+                }
+            });
+        }
+        else {
+            Log.d(TAG, "No one logged in");
+        }
+    }
+
+
+    public void addUserToFirestore(String name, String newUID) {
+        // Create a new user with their name
+        Map<String, Object> user = new HashMap<>();
+        user.put("name", name);
+        // Add a new document with a docID = to the authenticated user's UID
+        db.collection("users").document(newUID)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG, name + "'s user account added");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding user account", e);
+                    }
+                });
+    }
+
+    public void addData(Gym g) {
+        // add Memory m to the database
+        // this method is overloaded and incorporates the interface to handle the asynch calls
+        addData(g, new FirestoreCallback() {
+            @Override
+            public void onCallback(ArrayList<Gym> myList) {
+                Log.i(TAG, "Inside addData, onCallback :" + reservations.toString());
+            }
+        });
+    }
+
+
+    private void addData(Gym g, FirestoreCallback firestoreCallback) {
+        db.collection("users").document(uid).collection("myMemoryList")
+                .add(g)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        // This will set the docID key for the Memory that was just added.
+                        db.collection("users").document(uid).collection("myMemoryList").
+                                document(documentReference.getId()).update("docID", documentReference.getId());
+                        Log.i(TAG, "just added " + g.getGymName());
+                        readData(firestoreCallback);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i(TAG, "Error adding document", e);
+                    }
+                });
+    }
+
+
+    public ArrayList<Gym> getMemoryArrayList() {
+        return reservations;
+    }
+
+
+
+/* https://www.youtube.com/watch?v=0ofkvm97i0s
+This video is good!!!   Basically he talks about what it means for tasks to be asynchronous
+and how you can create an interface and then using that interface pass an object of the interface
+type from a callback method and access it after the callback method.  It also allows you to delay
+certain things from occurring until after the onSuccess is finished.
+*/
+
+    private void readData(FirestoreCallback firestoreCallback) {
+        reservations.clear();        // empties the AL so that it can get a fresh copy of data
+        db.collection("users").document(uid).collection("myMemoryList")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot doc: task.getResult()) {
+                                Gym memory = doc.toObject(Gym.class);
+                                reservations.add(memory);
+                            }
+
+                            Log.i(TAG, "Success reading data: "+ reservations.toString());
+                            firestoreCallback.onCallback(reservations);
+                        }
+                        else {
+                            Log.d(TAG, "Error getting documents: " + task.getException());
+                        }
+                    }
+                });
+    }
+
+
+    //https://stackoverflow.com/questions/48499310/how-to-return-a-documentsnapshot-as-a-result-of-a-method/48500679#48500679
+    public interface FirestoreCallback {
+        void onCallback(ArrayList<Gym> myList);
+    }
+    public void editData(Gym g) {
+        // edit Memory m to the database
+        // this method is overloaded and incorporates the interface to handle the asynch calls
+        editData(g, new FirestoreCallback() {
+            @Override
+            public void onCallback(ArrayList<Gym> myList) {
+                Log.i(TAG, "Inside editData, onCallback " + myList.toString());
+            }
+        });
+    }
+
+    private void editData(Gym g, FirestoreCallback firestoreCallback) {
+        String docId = g.getDocID();
+        db.collection("users").document(uid).collection("myMemoryList")
+                .document(docId)
+                .set(g)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.i(TAG, "Success updating document");
+                        readData(firestoreCallback);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i(TAG, "Error updating document", e);
+                    }
+                });
+    }
+
+    public void deleteData(Gym g) {
+        // delete item w from database
+        // this method is overloaded and incorporates the interface to handle the asynch calls
+        deleteData(g, new FirestoreCallback() {
+            @Override
+            public void onCallback(ArrayList<Gym> myList) {
+                Log.i(TAG, "Inside deleteData, onCallBack" + myList.toString());
+            }
+        });
+
+    }
+
+    private void deleteData(Gym g, FirestoreCallback firestoreCallback) {
+        // delete item w from database
+        String docId = g.getDocID();
+        db.collection("users").document(uid).collection("myMemoryList")
+                .document(docId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.i(TAG, g.getGymName() + " successfully deleted");
+                        readData(firestoreCallback);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i(TAG, "Error deleting document", e);
+                    }
+                });
+    }
+
+}
