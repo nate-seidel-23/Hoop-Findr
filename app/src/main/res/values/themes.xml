@@ -12,6 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:colorBackground">@color/black</item>
+        <item name="android:colorBackground">@color/charcoal</item>
+    </style>
+    <style name="textViewCustom">
+        <item name="fontFamily">@font/league</item>
     </style>
 </resources>

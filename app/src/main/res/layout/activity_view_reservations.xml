@@ -14,6 +14,7 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/margin"
         android:text="My Reservations"
+        android:fontFamily="@font/league"
         android:textColor="@color/primaryColor"
         android:textSize="40sp"
         android:textStyle="bold" />

@@ -14,11 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:fontFamily="@font/league"
         android:layout_centerVertical="true"
         android:text="open date picker" />
 
     <TextView
         android:id="@+id/textView"
+        android:fontFamily="@font/league"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
