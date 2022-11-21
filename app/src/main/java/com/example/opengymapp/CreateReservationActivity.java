@@ -52,6 +52,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
 
+            //need to do set the date in here
+
             TextView textView = (TextView) findViewById(R.id.textView);
             textView.setText(currentDateString);
         }

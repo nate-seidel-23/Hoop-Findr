@@ -2,6 +2,8 @@ package com.example.opengymapp;
 
 public class GymReservation {
     private String playerName;
+    private String date;
+    private Gym gym;
     private String time;
 
     public GymReservation(String playerName, String time) {
