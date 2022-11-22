@@ -31,7 +31,7 @@ public class GymInformationActivity extends AppCompatActivity {
 
     public void viewMap(View view){
         Intent intent = new Intent(GymInformationActivity.this,
-                ViewReservationsActivity.class);
+                Maps.class);
         startActivity(intent);
     }
 
