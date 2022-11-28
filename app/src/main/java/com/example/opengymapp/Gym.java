@@ -3,19 +3,18 @@ package com.example.opengymapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Gym implements Parcelable{
+public class Gym implements Parcelable {
     private String gymName;
     private int numCourts;
-    private String address, playerName, hour, docID;
+    private String address, docID;
 
-    public Gym(String gymName, int numCourts, String address, String playerName, String hour, String docID) {
+    public Gym(String gymName, int numCourts, String address, String docID) {
         this.gymName = gymName;
         this.numCourts = numCourts;
         this.address = address;
-        this.playerName = playerName;
-        this.hour = hour;
         this.docID = docID;
     }
+
     public static final Parcelable.Creator<Gym> CREATOR = new
             Parcelable.Creator<Gym>() {
 
@@ -34,24 +33,20 @@ public class Gym implements Parcelable{
         this.gymName = gymName;
         this.numCourts = numCourts;
         this.address = address;
-        this.playerName = playerName;
-        this.hour = hour;
         this.docID = "No docID yet";
     }
+
     public Gym(Parcel parcel) {
         gymName = parcel.readString();
         numCourts = parcel.readInt();
         address = parcel.readString();
-        playerName = parcel.readString();
-        hour = parcel.readString();
         docID = parcel.readString();
     }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(gymName);
         dest.writeInt(numCourts);
         dest.writeString(address);
-        dest.writeString(playerName);
-        dest.writeString(hour);
         dest.writeString(docID);
     }
 
@@ -61,14 +56,19 @@ public class Gym implements Parcelable{
         gymName = "No name";
         numCourts = 0;
         address = "No address";
-        playerName = "";
-        hour = "";
         this.docID = "No docID yet";
     }
+
     @Override
     public int describeContents() {
         return 0;
     }
+
+    public static final Gym[] gyms = {
+            new Gym("YMCA", 3, "1400 W Northwest Hwy, Palatine, IL 60067"),
+            new Gym("Birchwood", 1, "435 W Illinois Ave, Palatine, IL 60067"),
+            new Gym("Palatine Community Center", 2,"250 E Wood St, Palatine, IL 60067")
+    };
 
     public String getGymName() {
         return gymName;
@@ -102,19 +102,5 @@ public class Gym implements Parcelable{
         this.docID = docID;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public String getHour() {
-        return hour;
-    }
-
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
 }
+
