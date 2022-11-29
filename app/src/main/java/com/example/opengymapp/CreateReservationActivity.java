@@ -26,6 +26,7 @@ import java.util.Calendar;
 public class CreateReservationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     String currentDateString;
+    GymReservation reservation = new GymReservation();
 
         @SuppressLint("RestrictedApi")
         @Override
@@ -52,7 +53,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             c.set(Calendar.MONTH, month);
             c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-
+            reservation.setDate(currentDateString);
             //need to do set the date in here
 
             TextView textView = (TextView) findViewById(R.id.textView);
@@ -60,6 +61,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         }
 
 
-        GymReservation reservation = new GymReservation("", currentDateString, "", "");
+
+
+
 
 }

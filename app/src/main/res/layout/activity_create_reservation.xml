@@ -18,18 +18,7 @@
         android:layout_centerVertical="true"
         android:text="open date picker" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:fontFamily="@font/league"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="TextView"
-        android:textColor="@color/primaryColor"
-        android:textSize="@dimen/TEXTRIGHT"
-        android:textStyle="bold" />
-
-        <ScrollView
+    <ScrollView
         android:layout_width="350dp"
         android:layout_height="400dp"
         android:layout_gravity="center">
@@ -39,6 +28,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+
+            <EditText
+                android:id="@+id/playerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:textColor="@color/primaryColor"
+                android:textColorHint="@color/secondaryDarkColor" />
 
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="332dp"
