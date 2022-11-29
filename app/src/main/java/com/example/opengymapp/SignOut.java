@@ -24,4 +24,9 @@ public class SignOut extends AppCompatActivity {
         Intent intent = new Intent(SignOut.this, WelcomeActivity.class);
         startActivity(intent);
     }
+    public void backClick(View arg0) {
+        // TODO Auto-generated method stub
+        Intent intent = new Intent(getApplicationContext(), SelectGymActivity.class);
+        startActivity(intent);
+    }
 }
