@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -34,6 +35,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_create_reservation);
 
+
+
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
             Button button = (Button) findViewById(R.id.dateButton);
@@ -58,6 +61,17 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
 
             TextView textView = (TextView) findViewById(R.id.textView);
             textView.setText(currentDateString);
+        }
+
+        public void confirmReservationClicked(View view) {
+            EditText playerNameText = findViewById(R.id.playerName);
+
+            String name = playerNameText.getText().toString();
+            reservation.setPlayerName(name);
+        }
+
+        public boolean checkSlots(){
+            for(i=0;)
         }
 
 
