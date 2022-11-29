@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="TEXTRIGHT">40dp</dimen>
+    <dimen name="size">25dp</dimen>
     <dimen name="TEXTTOP">40dp</dimen>
     <dimen name="logoTop">40dp</dimen>
     <dimen name="logoLeft">40dp</dimen>
