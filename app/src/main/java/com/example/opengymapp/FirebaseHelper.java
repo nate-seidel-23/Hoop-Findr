@@ -48,9 +48,7 @@ public class FirebaseHelper {
     private static String uid = null;      // var will be updated for currently signed in user
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private ArrayList<Gym> reservations;
-    // we don't need this yet
-    // private ArrayList<Memory> myItems = new ArrayList<>();
+    private ArrayList<GymReservation> reservations;
 
 
     public FirebaseHelper() {
@@ -83,7 +81,7 @@ public class FirebaseHelper {
             uid = mAuth.getUid();
             readData(new FirestoreCallback() {
                 @Override
-                public void onCallback(ArrayList<Gym> memoryList) {
+                public void onCallback(ArrayList<GymReservation> memoryList) {
                     Log.d(TAG, "Inside attachReadDataToUser, onCallback " + memoryList.toString());
                 }
             });
@@ -115,19 +113,19 @@ public class FirebaseHelper {
                 });
     }
 
-    public void addData(Gym g) {
+    public void addData(GymReservation g) {
         // add Memory m to the database
         // this method is overloaded and incorporates the interface to handle the asynch calls
         addData(g, new FirestoreCallback() {
             @Override
-            public void onCallback(ArrayList<Gym> myList) {
+            public void onCallback(ArrayList<GymReservation> myList) {
                 Log.i(TAG, "Inside addData, onCallback :" + reservations.toString());
             }
         });
     }
 
 
-    private void addData(Gym g, FirestoreCallback firestoreCallback) {
+    private void addData(GymReservation g, FirestoreCallback firestoreCallback) {
         db.collection("users").document(uid).collection("myMemoryList")
                 .add(g)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -136,7 +134,7 @@ public class FirebaseHelper {
                         // This will set the docID key for the Memory that was just added.
                         db.collection("users").document(uid).collection("myMemoryList").
                                 document(documentReference.getId()).update("docID", documentReference.getId());
-                        Log.i(TAG, "just added " + g.getGymName());
+                        Log.i(TAG, "just added " + g.getPlayerName() + g.getGym() + g.getDate());
                         readData(firestoreCallback);
                     }
                 })
@@ -149,7 +147,7 @@ public class FirebaseHelper {
     }
 
 
-    public ArrayList<Gym> getMemoryArrayList() {
+    public ArrayList<GymReservation> getGymArrayList() {
         return reservations;
     }
 
@@ -171,7 +169,7 @@ certain things from occurring until after the onSuccess is finished.
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot doc: task.getResult()) {
-                                Gym memory = doc.toObject(Gym.class);
+                                GymReservation memory = doc.toObject(GymReservation.class);
                                 reservations.add(memory);
                             }
 
@@ -188,20 +186,20 @@ certain things from occurring until after the onSuccess is finished.
 
     //https://stackoverflow.com/questions/48499310/how-to-return-a-documentsnapshot-as-a-result-of-a-method/48500679#48500679
     public interface FirestoreCallback {
-        void onCallback(ArrayList<Gym> myList);
+        void onCallback(ArrayList<GymReservation> myList);
     }
-    public void editData(Gym g) {
+    public void editData(GymReservation g) {
         // edit Memory m to the database
         // this method is overloaded and incorporates the interface to handle the asynch calls
         editData(g, new FirestoreCallback() {
             @Override
-            public void onCallback(ArrayList<Gym> myList) {
+            public void onCallback(ArrayList<GymReservation> myList) {
                 Log.i(TAG, "Inside editData, onCallback " + myList.toString());
             }
         });
     }
 
-    private void editData(Gym g, FirestoreCallback firestoreCallback) {
+    private void editData(GymReservation g, FirestoreCallback firestoreCallback) {
         String docId = g.getDocID();
         db.collection("users").document(uid).collection("myMemoryList")
                 .document(docId)
@@ -221,19 +219,19 @@ certain things from occurring until after the onSuccess is finished.
                 });
     }
 
-    public void deleteData(Gym g) {
+    public void deleteData(GymReservation g) {
         // delete item w from database
         // this method is overloaded and incorporates the interface to handle the asynch calls
         deleteData(g, new FirestoreCallback() {
             @Override
-            public void onCallback(ArrayList<Gym> myList) {
+            public void onCallback(ArrayList<GymReservation> myList) {
                 Log.i(TAG, "Inside deleteData, onCallBack" + myList.toString());
             }
         });
 
     }
 
-    private void deleteData(Gym g, FirestoreCallback firestoreCallback) {
+    private void deleteData(GymReservation g, FirestoreCallback firestoreCallback) {
         // delete item w from database
         String docId = g.getDocID();
         db.collection("users").document(uid).collection("myMemoryList")
@@ -242,7 +240,7 @@ certain things from occurring until after the onSuccess is finished.
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Log.i(TAG, g.getGymName() + " successfully deleted");
+                        Log.i(TAG, g.getDate() + g.getPlayerName() + " successfully deleted");
                         readData(firestoreCallback);
                     }
                 })

@@ -3,14 +3,15 @@ package com.example.opengymapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
 public class GymReservation implements Parcelable{
     private String playerName;
     private String date;
-    private Gym gym;
+    private String gym;
     private String time;
     private String docID;
 
-    public GymReservation(String playerName, String date, Gym gym, String time, String docID) {
+    public GymReservation(String playerName, String date, String gym, String time, String docID) {
         this.playerName = playerName;
         this.date = date;
         this.gym = gym;
@@ -18,7 +19,7 @@ public class GymReservation implements Parcelable{
         this.docID = docID;
     }
 
-    public GymReservation(String playerName, String date, Gym gym, String time){
+    public GymReservation(String playerName, String date, String gym, String time){
         this.playerName = playerName;
         this.date = date;
         this.gym = gym;
@@ -29,7 +30,7 @@ public class GymReservation implements Parcelable{
     public GymReservation(){
         playerName = "";
         date = "";
-        gym = new Gym();
+        gym = "";
         time = "";
         docID = "No docID yet";
     }
@@ -37,8 +38,7 @@ public class GymReservation implements Parcelable{
     public GymReservation(Parcel parcel) {
         playerName = parcel.readString();
         date = parcel.readString();
-        // need to fix this
-//        gym = parcel.readTypedObject(Creator<Gym>);
+        gym = parcel.readString();
         time = parcel.readString();
         docID = parcel.readString();
     }
@@ -47,8 +47,7 @@ public class GymReservation implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(playerName);
         dest.writeString(date);
-        // need to add write method for gym object
-        dest.writeTypedObject();
+        dest.writeString(gym);
         dest.writeString(time);
         dest.writeString(docID);
     }
@@ -72,6 +71,33 @@ public class GymReservation implements Parcelable{
         return 0;
     }
 
+    public String toString() {
+        return "Name: " + playerName + " " + date + " " + gym;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getGym() {
+        return gym;
+    }
+
+    public void setGym(String gym) {
+        this.gym = gym;
+    }
+
+    public String getDocID() {
+        return docID;
+    }
+
+    public void setDocID(String docID) {
+        this.docID = docID;
+    }
 
     public String getPlayerName() {
         return playerName;
