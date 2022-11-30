@@ -26,28 +26,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="50dp">
 
 
             <EditText
                 android:id="@+id/playerName"
-                android:layout_width="172dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Name"
                 android:fontFamily="@font/league"
+                android:hint="Name"
                 android:inputType="textPersonName"
                 android:textColor="@color/primaryColor"
                 android:textColorHint="@color/secondaryDarkColor"
-                android:textSize="@dimen/size" />
-
-            <TextView
-                android:id="@+id/court1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textSize="@dimen/size"
-                android:fontFamily="@font/league"
-                android:text="Court 1" />
+                android:layout_marginLeft="60dp"/>
+
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="332dp"
                 android:layout_height="match_parent"
@@ -118,7 +114,7 @@
                     android:layout_width="127dp"
                     android:layout_height="40dp"
                     android:fontFamily="@font/league"
-                    android:text="Button" />
+                    android:text="confirm" />
 
                 <TextView
                     android:id="@+id/playerName6"
@@ -186,7 +182,7 @@
                     android:fontFamily="@font/league"
                     android:layout_width="127dp"
                     android:layout_height="40dp"
-                    android:text="Button" />
+                    android:text="confirm" />
 
             </androidx.gridlayout.widget.GridLayout>
 
