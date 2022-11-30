@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -26,16 +27,27 @@ import java.util.Calendar;
 
 public class CreateReservationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    String currentDateString;
-    GymReservation reservation = new GymReservation();
+    private String currentDateString;
+    private GymReservation reservation = new GymReservation();
+    private ArrayList<String> teamOneNames;
+    private ArrayList<String> teamTwoNames;
+
+
+
+    public void addToList(ArrayList<String> s){
+        teamOneNames.add("");
+        teamOneNames.add("");
+        teamOneNames.add("");
+        teamOneNames.add("");
+        teamOneNames.add("");
+    }
+
 
         @SuppressLint("RestrictedApi")
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_create_reservation);
-
-
 
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
@@ -65,18 +77,25 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
 
         public void confirmReservationClicked(View view) {
             EditText playerNameText = findViewById(R.id.playerName);
-
             String name = playerNameText.getText().toString();
+
+            if(R.id.team1C1)
+
+            for(int i = 0; i < 5; i++){
+                if()
+            }
             reservation.setPlayerName(name);
         }
 
-        public boolean checkSlots(){
-            for(i=0;)
+
+
+        public Boolean checkTeamAvailability(String s){
+                if(s.equals("")){
+                    return true;
+                }else{
+                    return false;
+                }
+
         }
-
-
-
-
-
 
 }

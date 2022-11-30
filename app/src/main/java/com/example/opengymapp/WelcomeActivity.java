@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+
 public class WelcomeActivity extends AppCompatActivity {
     // xml elements
     Button logInB, signUpB;
@@ -36,6 +39,23 @@ public class WelcomeActivity extends AppCompatActivity {
         signUpB = findViewById(R.id.signUp);
         emailET = findViewById(R.id.email);
         passwordET = findViewById(R.id.password);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        updateUI();
+    }
+
+    public void updateUI() {
+        // if the user is already logged in, then they bypass this screen
+        Log.d(TAG, "inside updateUI: " + firebaseHelper.getmAuth().getUid());
+        if (firebaseHelper.getmAuth().getUid() != null) {
+            firebaseHelper.attachReadDataToUser();
+            Intent intent = new Intent(WelcomeActivity.this, SelectGymActivity.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -74,17 +94,42 @@ public class WelcomeActivity extends AppCompatActivity {
                                 firebaseHelper.updateUid(firebaseHelper.getmAuth().getUid());
                                 Log.d(TAG, email + " created and logged in");
 
-                                // we will implement this later
-                                // updateIfLoggedIn();
-                                // firebaseHelper.attachReadDataToUser();
+                                firebaseHelper.addUserToFirestore(email, firebaseHelper.getmAuth().getUid());
+                                firebaseHelper.attachReadDataToUser();
 
                                 Intent intent = new Intent(WelcomeActivity.this, SelectGymActivity.class);
                                 startActivity(intent);
                             }
                             else {
-                                // if sign up fails, display a message to the user along with the exception from firebase auth
+                                /*
+                               This prevents the app from CRASHING when the user enters bad items
+                               (duplicate email or badly formatted email most likely)
+
+                               https://stackoverflow.com/questions/37859582/how-to-catch-a-firebase-auth-specific-exceptions
+
+                                */
+
+                                try {
+                                    throw task.getException();
+                                } catch (FirebaseAuthInvalidCredentialsException e) {
+                                    // poorly formatted email address
+                                    Toast.makeText(WelcomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "Sign up failed for " + email + " " + password + e.getMessage());
+                                } catch (FirebaseAuthEmailException e) {
+                                    // duplicate email used
+                                    Toast.makeText(WelcomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "Sign up failed for " + email + " " + password + e.getMessage());
+                                } catch (Exception e) {
+                                    Toast.makeText(WelcomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "Sign up failed for " + email + " " + password + e.getMessage());
+                                }
+
+
+                                // this log message will tell the name of the exception.  If you want to add this to the catch
+                                // statement above, then just add another catch above the generic one at the end
+
                                 Log.d(TAG, "Sign up failed for " + email + " " + password +
-                                        " because of \n"+ task.getResult());
+                                        " because of \n"+ task.getException());
 
                             }
                         }
@@ -131,6 +176,8 @@ public class WelcomeActivity extends AppCompatActivity {
             // if invalid - prompt message that says why signin won't go through
         }
     }
+
+
 
 
     /**
