@@ -19,7 +19,9 @@
         <activity
             android:name=".SignOut"
             android:exported="false" />
-
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAVfRQ-zcHxlvNMSm6WHCFE5D_BcLcYtp0" />

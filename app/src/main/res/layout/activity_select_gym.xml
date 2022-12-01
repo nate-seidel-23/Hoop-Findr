@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/margin"
-        android:text="Select Gym"
         android:fontFamily="@font/league"
-        android:textColor="@color/secondaryDarkColor"
+        android:text="Select    Gym"
+        android:textColor="@color/primaryColor"
         android:textSize="40sp"
         android:textStyle="bold" />
 
@@ -30,7 +30,6 @@
         android:fontFamily="@font/league"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="gymSelected"
       />
 
     <Button
@@ -43,7 +42,6 @@
         android:text="BIRCHWOOD"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="gymSelected"
      />
 
     <Button
@@ -58,7 +56,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="gymSelected"
         />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
