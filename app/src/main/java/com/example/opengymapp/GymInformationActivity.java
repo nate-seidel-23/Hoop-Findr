@@ -9,7 +9,8 @@ import android.view.View;
 
 public class GymInformationActivity extends AppCompatActivity {
 
-    @SuppressLint("RestrictedApi")
+    public final String TAG = "Denna";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

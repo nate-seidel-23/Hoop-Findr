@@ -14,10 +14,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class WelcomeActivity extends AppCompatActivity {
-    // xml elements
-    Button logInB, signUpB;
+
+
+    Button logInButton, signUpButton;
     EditText emailET, passwordET;
 
     // values to pass to firebase auth for log in/sign up
@@ -35,8 +37,8 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         firebaseHelper = new FirebaseHelper();
-        logInB = findViewById(R.id.logIn);
-        signUpB = findViewById(R.id.signUp);
+        logInButton = findViewById(R.id.logIn);
+        signUpButton = findViewById(R.id.signUp);
         emailET = findViewById(R.id.email);
         passwordET = findViewById(R.id.password);
     }
@@ -85,9 +87,6 @@ public class WelcomeActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            // FOR SOME REASON IF THE CREATE USER IS NOT WORKING, THIS IS CRASHING
-                            // NOT SURE WHY?  I TRIED WITH A DUPLICATE EMAIL ADDRESS AND THAT CRASHED IT.
-                            // LOGCAT SHOWED THE MESSAGE BUT I COULDN'T GET IT TO SHOW IN A LOG STATEMENT
 
                             if (task.isSuccessful()){
                                 // Sign up successful, update UI with the currently signed in user's info
@@ -152,10 +151,7 @@ public class WelcomeActivity extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 // Sign in success, update currently signed in user's info
                                 firebaseHelper.updateUid(firebaseHelper.getmAuth().getUid());
-
-                                // we will implement this later
-                                // updateIfLoggedIn();
-                                // firebaseHelper.attachReadDataToUser();
+                                firebaseHelper.attachReadDataToUser();
 
                                 Log.d(TAG, email + " logged in");
 
@@ -163,17 +159,35 @@ public class WelcomeActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                             else {
-                                // if log in fails, display a message to the user along with the exception from firebase auth
-                                Log.d(TAG, "Log in failed for " + email + " " + password +
-                                        " because of \n"+ task.toString());
+                                /*
+                                This notifies the user of WHY they couldn't log in
+                                https://stackoverflow.com/questions/37859582/how-to-catch-a-firebase-auth-specific-exceptions
+                                 */
+
+                                try {
+                                    throw task.getException();
+                                } catch (FirebaseAuthInvalidCredentialsException e) {
+                                    // wrong password
+                                    Toast.makeText(WelcomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "Log in failed for " + email + " " + password + e.getMessage());
+                                } catch (FirebaseAuthInvalidUserException e) {
+                                    // wrong email, no user found with this email
+                                    Toast.makeText(WelcomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "Log in failed for " + email + " " + password + e.getMessage());
+                                } catch (Exception e) {
+                                    Toast.makeText(WelcomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "Log in failed for " + email + " " + password + e.getMessage());
+                                }
                             }
+                            // this log message will tell the name of the exception.  If you want to add this to the catch
+                            // statement above, then just add another catch above the generic one at the end
+
+                            Log.d(TAG, "Log in failed for " + email + " " + password +
+                                    " because of \n"+ task.getException());
                         }
+
                     });
 
-
-
-
-            // if invalid - prompt message that says why signin won't go through
         }
     }
 
@@ -204,8 +218,16 @@ public class WelcomeActivity extends AppCompatActivity {
             return false;
         } else {
             Log.i(TAG, email + " " + password + " is set after getValues(), return true");
+            email = removeTrailingSpaces(email);
             return true;
         }
+    }
+
+    private String removeTrailingSpaces(String email) {
+        String lastChar = email.substring(email.length() -1);
+        if (lastChar.equals(" "))
+            email = email.substring(0, email.length()-1);
+        return email;
     }
 
 }

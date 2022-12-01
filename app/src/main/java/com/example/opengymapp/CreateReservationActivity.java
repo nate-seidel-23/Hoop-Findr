@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -21,31 +22,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 
 public class CreateReservationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    private String currentDateString;
-    private GymReservation reservation = new GymReservation();
+    private String currentDateString = "";
     private ArrayList<String> teamOneNames;
     private ArrayList<String> teamTwoNames;
+    private EditText playerNameText;
+    private String name;
 
 
 
-    public void addToList(ArrayList<String> s){
-        teamOneNames.add("");
-        teamOneNames.add("");
-        teamOneNames.add("");
-        teamOneNames.add("");
-        teamOneNames.add("");
-    }
+
+//    public void addToList(ArrayList<String> s){
+//        s.add("");
+//        s.add("");
+//        s.add("");
+//        s.add("");
+//        s.add("");
+//    }
 
 
         @SuppressLint("RestrictedApi")
         @Override
         protected void onCreate(Bundle savedInstanceState) {
+
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_create_reservation);
 
@@ -59,7 +64,11 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                     datePicker.show(getSupportFragmentManager(), "date picker");
                 }
             });
+
+
         }
+
+
 
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -68,34 +77,76 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             c.set(Calendar.MONTH, month);
             c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-            reservation.setDate(currentDateString);
-            //need to do set the date in here
+//            reservation.setDate(currentDateString);
 
             TextView textView = (TextView) findViewById(R.id.textView);
             textView.setText(currentDateString);
+            teamOneNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
+            teamTwoNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
+
         }
 
-        public void confirmReservationClicked(View view) {
-            EditText playerNameText = findViewById(R.id.playerName);
-            String name = playerNameText.getText().toString();
+        public void confirmReservationClickedT1(View view) {
+            playerNameText = findViewById(R.id.playerName);
+            name = playerNameText.getText().toString();
+            GymReservation reservation = new GymReservation("","","","","");
+            reservation.setDate(currentDateString);
 
-            if(R.id.team1C1)
+            if(reservation.getPlayerName().equals("")) {
+                Boolean b = false;
 
-            for(int i = 0; i < 5; i++){
-                if()
+                for(int i = 0; i < 5; i++) {
+                    if (isAvailable(teamOneNames.get(i))) {
+                        teamOneNames.set(i, name);
+                        reservation.setPlayerName(name);
+                        b = true;
+                    }
+                }
+
+                if(b == false){
+                    Toast.makeText(getApplicationContext(),"Sorry " + name
+                            + " this team is full this day.", Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(getApplicationContext(), "You already reserved a spot " +
+                        "in this game.", Toast.LENGTH_LONG).show();
             }
-            reservation.setPlayerName(name);
+        }
+
+        public void confirmReservationClickedT2(View view) {
+
+            GymReservation reservation = new GymReservation("","","","","");
+
+            if(reservation.getPlayerName().equals("")) {
+                boolean b = false;
+
+                for(int i = 0; i < 5; i++){
+                    if (isAvailable(teamTwoNames.get(i))) {
+                        teamTwoNames.set(i, name);
+                        reservation.setPlayerName(name);
+                        b = true;
+                    }
+                }
+
+                if(b == false){
+                    Toast.makeText(getApplicationContext(),"Sorry " + name
+                            + " this team is full this day.", Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(getApplicationContext(), "You already reserved a spot " +
+                        "in this game.", Toast.LENGTH_LONG).show();
+            }
         }
 
 
-
-        public Boolean checkTeamAvailability(String s){
-                if(s.equals("")){
+        // we will need to change this method to confirm that the user hasn't previously entered
+        // a name on that date/time
+        public boolean isAvailable(String s){
+                if(s.equals("")) {
                     return true;
                 }else{
                     return false;
                 }
-
         }
 
 }

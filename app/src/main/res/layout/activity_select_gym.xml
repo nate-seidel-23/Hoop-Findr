@@ -43,6 +43,7 @@
         android:text="BIRCHWOOD"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:onClick="gymSelected"
      />
 
     <Button
@@ -56,6 +57,8 @@
         android:layout_margin="@dimen/margin"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="gymSelected"
+        />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
