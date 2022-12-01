@@ -74,7 +74,7 @@ public class FirebaseHelper {
 
     public void attachReadDataToUser() {
         // This is necessary to avoid the issues we ran into with data displaying before it
-        // returned from the asynch method calls
+        // returned from the async method calls
         if (mAuth.getCurrentUser() != null) {
             uid = mAuth.getUid();
             readData(new FirestoreCallback() {

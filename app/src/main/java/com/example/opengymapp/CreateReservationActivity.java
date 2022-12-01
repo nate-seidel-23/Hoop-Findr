@@ -34,119 +34,108 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
     private ArrayList<String> teamTwoNames;
     private EditText playerNameText;
     private String name;
+    GymReservation reservation;
 
 
+    @SuppressLint("RestrictedApi")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_reservation);
 
-//    public void addToList(ArrayList<String> s){
-//        s.add("");
-//        s.add("");
-//        s.add("");
-//        s.add("");
-//        s.add("");
-//    }
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
-
-        @SuppressLint("RestrictedApi")
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_create_reservation);
-
-            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-
-            Button button = (Button) findViewById(R.id.dateButton);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DialogFragment datePicker = new DatePickerFragment();
-                    datePicker.show(getSupportFragmentManager(), "date picker");
-                }
-            });
-
-
-        }
-
-
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            Calendar c = Calendar.getInstance();
-            c.set(Calendar.YEAR, year);
-            c.set(Calendar.MONTH, month);
-            c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-//            reservation.setDate(currentDateString);
-
-            TextView textView = (TextView) findViewById(R.id.textView);
-            textView.setText(currentDateString);
-            teamOneNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
-            teamTwoNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
-
-        }
-
-        public void confirmReservationClickedT1(View view) {
-            playerNameText = findViewById(R.id.playerName);
-            name = playerNameText.getText().toString();
-            GymReservation reservation = new GymReservation("","","","","");
-            reservation.setDate(currentDateString);
-
-            if(reservation.getPlayerName().equals("")) {
-                Boolean b = false;
-
-                for(int i = 0; i < 5; i++) {
-                    if (isAvailable(teamOneNames.get(i))) {
-                        teamOneNames.set(i, name);
-                        reservation.setPlayerName(name);
-                        b = true;
-                    }
-                }
-
-                if(b == false){
-                    Toast.makeText(getApplicationContext(),"Sorry " + name
-                            + " this team is full this day.", Toast.LENGTH_LONG).show();
-                }
-            }else{
-                Toast.makeText(getApplicationContext(), "You already reserved a spot " +
-                        "in this game.", Toast.LENGTH_LONG).show();
+        Button button = (Button) findViewById(R.id.dateButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
             }
-        }
+        });
 
-        public void confirmReservationClickedT2(View view) {
+        teamOneNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
+        teamTwoNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
+        reservation = new GymReservation("","","","","");
 
-            GymReservation reservation = new GymReservation("","","","","");
+    }
 
-            if(reservation.getPlayerName().equals("")) {
-                boolean b = false;
 
-                for(int i = 0; i < 5; i++){
-                    if (isAvailable(teamTwoNames.get(i))) {
-                        teamTwoNames.set(i, name);
-                        reservation.setPlayerName(name);
-                        b = true;
-                    }
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        reservation.setDate(currentDateString);
+
+    }
+
+    public void confirmReservationClickedT1(View view) {
+        playerNameText = findViewById(R.id.playerName);
+        name = playerNameText.getText().toString();
+
+        reservation.setDate(currentDateString);
+
+        if(reservation.getPlayerName().equals("")) {
+            Boolean b = false;
+
+            for(int i = 0; i < 5; i++) {
+                if (isAvailable(teamOneNames.get(i))) {
+                    teamOneNames.set(i, name);
+                    reservation.setPlayerName(name);
+                    b = true;
                 }
-
-                if(b == false){
-                    Toast.makeText(getApplicationContext(),"Sorry " + name
-                            + " this team is full this day.", Toast.LENGTH_LONG).show();
-                }
-            }else{
-                Toast.makeText(getApplicationContext(), "You already reserved a spot " +
-                        "in this game.", Toast.LENGTH_LONG).show();
             }
+
+            if(b == false){
+                Toast.makeText(getApplicationContext(),"Sorry " + name
+                        + " this team is full this day.", Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "You already reserved a spot " +
+                    "in this game.", Toast.LENGTH_LONG).show();
         }
 
+        WelcomeActivity.firebaseHelper.addData(reservation);
+    }
 
-        // we will need to change this method to confirm that the user hasn't previously entered
-        // a name on that date/time
-        public boolean isAvailable(String s){
-                if(s.equals("")) {
-                    return true;
-                }else{
-                    return false;
+    public void confirmReservationClickedT2(View view) {
+
+        if(reservation.getPlayerName().equals("")) {
+            boolean b = false;
+
+            for(int i = 0; i < 5; i++){
+                if (isAvailable(teamTwoNames.get(i))) {
+                    teamTwoNames.set(i, name);
+                    reservation.setPlayerName(name);
+                    b = true;
                 }
+            }
+
+            if(b == false){
+                Toast.makeText(getApplicationContext(),"Sorry " + name
+                        + " this team is full this day.", Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "You already reserved a spot " +
+                    "in this game.", Toast.LENGTH_LONG).show();
         }
+
+        WelcomeActivity.firebaseHelper.addData(reservation);
+    }
+
+
+    // we will need to change this method to confirm that the user hasn't previously entered
+    // a name on that date/time
+    public boolean isAvailable(String s){
+            if(s.equals("")) {
+                return true;
+            }else{
+                return false;
+            }
+    }
 
 }
