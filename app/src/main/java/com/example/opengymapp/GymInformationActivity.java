@@ -6,15 +6,19 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class GymInformationActivity extends AppCompatActivity {
-
-    public final String TAG = "Denna";
+    TextView gymName;
+    public final String TAG = "Halvadia and Seidel";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gym_information);
+        gymName = (TextView) findViewById(R.id.gymName);
+        gymName.setText(getIntent().getStringExtra("message"));
+        
 
     }
 

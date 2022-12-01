@@ -10,21 +10,51 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 public class SelectGymActivity extends AppCompatActivity {
-
+    Button community,birchwood,ymca;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_gym);
+        community=(Button)findViewById(R.id.community);
+        birchwood=(Button)findViewById(R.id.birchwood);
+        ymca=(Button)findViewById(R.id.ymca);
+
+
+        community.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(SelectGymActivity.this, GymInformationActivity.class);
+                intent.putExtra("message","Community    Gym");
+                startActivity(intent);
+            }
+        });
+        birchwood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(SelectGymActivity.this, GymInformationActivity.class);
+                intent.putExtra("message","Birchwood    Gym");
+                startActivity(intent);
+            }
+        });
+        ymca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(SelectGymActivity.this, GymInformationActivity.class);
+                intent.putExtra("message","YMCA    Gym");
+                startActivity(intent);
+            }
+        });
     }
 
-    public void gymSelected(View view){
-        Intent intent = new Intent(SelectGymActivity.this,
-                GymInformationActivity.class);
-        startActivity(intent);
-    }
+//    public void gymSelected(View view){
+//        Intent intent = new Intent(SelectGymActivity.this,
+//                GymInformationActivity.class);
+//        startActivity(intent);
+//    }
 
     @SuppressLint("RestrictedApi")
     public boolean onCreateOptionsMenu(Menu menu) {
