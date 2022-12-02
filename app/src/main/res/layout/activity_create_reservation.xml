@@ -14,14 +14,45 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin"
         android:fontFamily="@font/league"
         android:layout_centerVertical="true"
-        android:text="open date picker" />
+        android:text="Select date" />
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        style="@style/textViewCustom"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center"
+        android:textSize="@dimen/size"
+        android:layout_margin="@dimen/margin"
+        />
+
+    <Spinner
+        android:id="@+id/timeSelector"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        style="@style/textViewCustom"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center"
+        android:textSize="@dimen/size"
+        android:layout_marginTop="@dimen/margin"
+        />
 
     <ScrollView
         android:layout_width="350dp"
         android:layout_height="400dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -193,5 +224,8 @@
 
         </LinearLayout>
     </ScrollView>
+
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

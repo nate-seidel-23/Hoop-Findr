@@ -2,4 +2,20 @@
     <string name="app_name">Hoop Findr</string>
     <string name="date">Date</string>
 
+    <string-array name="weekdayTimes">
+        <item>Select Time</item>
+        <item>5-6 PM</item>
+        <item>6-7 PM</item>
+        <item>7-8 PM</item>
+    </string-array>
+
+    <string-array name="weekendTimes">
+        <item>Select Time</item>
+        <item>1-2 PM</item>
+        <item>2-3 PM</item>
+        <item>3-4 PM</item>
+        <item>4-5 PM</item>
+        <item>5-6 PM</item>
+    </string-array>
+
 </resources>

@@ -16,5 +16,6 @@
     </style>
     <style name="textViewCustom">
         <item name="fontFamily">@font/league</item>
+        <item name="android:textColor">@color/primaryColor</item>
     </style>
 </resources>
