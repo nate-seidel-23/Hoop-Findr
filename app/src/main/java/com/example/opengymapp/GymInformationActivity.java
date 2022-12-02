@@ -13,14 +13,14 @@ public class GymInformationActivity extends AppCompatActivity {
     TextView gymName;
 
     public final String TAG = "Halvadia and Seidel";
-
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gym_information);
         gymName = (TextView) findViewById(R.id.gymName);
         gymName.setText(getIntent().getStringExtra("message"));
-        
+        name = getIntent().getStringExtra("message");
 
     }
 
@@ -39,7 +39,7 @@ public class GymInformationActivity extends AppCompatActivity {
     public void viewMap(View view){
         Intent intent = new Intent(GymInformationActivity.this,
                 Maps.class);
-        intent.putExtra("name", (Parcelable) gymName);
+        intent.putExtra("name", "" + name);
         startActivity(intent);
 
     }

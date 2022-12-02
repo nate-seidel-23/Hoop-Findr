@@ -24,7 +24,7 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback{
         setContentView(R.layout.activity_maps);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
         mapFragment.getMapAsync(this);
-        
+
         name = getIntent().getStringExtra("name");
 
     }
@@ -34,10 +34,10 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback{
         double lon;
         double lat;
 
-        if (name.equals("community")){
+        if (name.equals("Community")){
                 lon = -88.038000;
                 lat = 42.114100;
-            }else if (name.equals("birchwood")){
+            }else if (name.equals("Birchwood")){
                 lon = -88.0558555322;
                 lat = 42.0930720186;
             }else{
