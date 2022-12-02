@@ -165,8 +165,8 @@ certain things from occurring until after the onSuccess is finished.
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot doc: task.getResult()) {
-                                GymReservation memory = doc.toObject(GymReservation.class);
-                                reservations.add(memory);
+                                GymReservation reservation = doc.toObject(GymReservation.class);
+                                reservations.add(reservation);
                             }
 
                             Log.i(TAG, "Success reading data: "+ reservations.toString());

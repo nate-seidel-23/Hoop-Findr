@@ -37,6 +37,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
     public final String TAG = "Denna";
 
 
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         teamOneNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
         teamTwoNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
         reservation = new GymReservation("","","","","");
+
 
     }
 
