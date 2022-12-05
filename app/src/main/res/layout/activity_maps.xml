@@ -21,13 +21,14 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="247dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="187dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="588dp"
         android:fontFamily="@font/league"
         android:text="CLICK    ON    THE    MARKER!"
-        android:textColor="@color/primaryColor"
+        android:textColor="@color/primaryDarkColor"
+        android:textColorHighlight="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

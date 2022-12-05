@@ -33,6 +33,7 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback{
     public void onMapReady(GoogleMap googleMap) {
         double lon;
         double lat;
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
 
         if (name.equals("Community")){
                 lon = -88.038000;
