@@ -22,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import android.widget.Toast;
 
+import org.checkerframework.checker.units.qual.C;
+
 
 public class CreateReservationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
@@ -33,6 +35,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
     GymReservation reservation;
     TextView t;
     Spinner spinner;
+    ArrayAdapter<String> adapter;
     String spinnerSelectedText = "none";
     public final String TAG = "Denna";
 
@@ -57,13 +60,6 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         });
 
         spinner = findViewById(R.id.timeSelector);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_list,
-                getResources().getStringArray(R.array.weekdayTimes));
-
-        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_row);
-
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
         spinner.setVisibility(View.INVISIBLE);
 
         teamOneNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
@@ -96,6 +92,22 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             reservation.setDate(selectedDateString);
             TextView t = findViewById(R.id.dateText);
             t.setText(selectedDateString);
+            Log.d(TAG, " " + c.get(Calendar.DAY_OF_WEEK));
+
+            if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.spinner_list,
+                        getResources().getStringArray(R.array.weekendTimes));
+                adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_row);
+                spinner.setAdapter(adapter2);
+                spinner.setOnItemSelectedListener(this);
+            }
+            else{
+                adapter = new ArrayAdapter<>(this, R.layout.spinner_list,
+                        getResources().getStringArray(R.array.weekdayTimes));
+                adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_row);
+                spinner.setAdapter(adapter);
+                spinner.setOnItemSelectedListener(this);
+            }
             spinner.setVisibility(View.VISIBLE);
         }else{
             Toast.makeText(getApplicationContext(),"Must be a future date",
@@ -179,8 +191,6 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                     t.setText(name);
                 }
 
-
-
             }
 
             if(b == false){
@@ -210,10 +220,10 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
 
     public boolean timeSelected(){
 
-        String[] weekend = getResources().getStringArray(R.array.weekdayTimes);
+        String[] weekday = getResources().getStringArray(R.array.weekdayTimes);
         boolean optionChose = false;
 
-        for(int i = 1; i < weekend.length - 1; i++)
+        for(int i = 1; i < weekday.length - 1; i++)
         if(spinnerSelectedText.equals(getResources().
                 getStringArray(R.array.weekdayTimes)[i])){
             optionChose = true;
@@ -221,5 +231,6 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
 
         return optionChose;
     }
+
 
 }
