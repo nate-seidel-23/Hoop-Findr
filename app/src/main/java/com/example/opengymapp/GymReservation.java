@@ -9,21 +9,25 @@ public class GymReservation implements Parcelable{
     private String date;
     private String gym;
     private String time;
+    private String court;
     private String docID;
 
-    public GymReservation(String playerName, String date, String gym, String time, String docID) {
+    public GymReservation(String playerName, String date, String gym, String time, String court,
+                          String docID) {
         this.playerName = playerName;
         this.date = date;
         this.gym = gym;
         this.time = time;
+        this.court = court;
         this.docID = docID;
     }
 
-    public GymReservation(String playerName, String date, String gym, String time){
+    public GymReservation(String playerName, String date, String gym, String time, String court){
         this.playerName = playerName;
         this.date = date;
         this.gym = gym;
         this.time = time;
+        this.court = court;
         docID = "No docID yet";
     }
 
@@ -32,6 +36,7 @@ public class GymReservation implements Parcelable{
         date = "";
         gym = "";
         time = "";
+        court = "";
         docID = "No docID yet";
     }
 
@@ -40,6 +45,7 @@ public class GymReservation implements Parcelable{
         date = parcel.readString();
         gym = parcel.readString();
         time = parcel.readString();
+        court = parcel.readString();
         docID = parcel.readString();
     }
 
@@ -49,6 +55,7 @@ public class GymReservation implements Parcelable{
         dest.writeString(date);
         dest.writeString(gym);
         dest.writeString(time);
+        dest.writeString(court);
         dest.writeString(docID);
     }
 
@@ -113,5 +120,13 @@ public class GymReservation implements Parcelable{
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getCourt() {
+        return court;
+    }
+
+    public void setCourt(String court) {
+        this.court = court;
     }
 }

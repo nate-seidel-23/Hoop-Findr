@@ -121,8 +121,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
     public void confirmReservationClickedT1(View view) {
         playerNameText = findViewById(R.id.playerName);
         name = playerNameText.getText().toString();
-        reservation.setTime(spinnerSelectedText);
-        reservation.setDate(selectedDateString);
+
 
         if(reservation.getPlayerName().equals("")) {
             Boolean b = false;
@@ -131,10 +130,16 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                 if (isAvailable(teamOneNames.get(i))) {
                     teamOneNames.set(i, name);
                     reservation.setPlayerName(name);
+                    reservation.setCourt("Court 1");
+                    reservation.setTime(spinnerSelectedText);
+                    reservation.setDate(selectedDateString);
+                    reservation.setGym(getIntent().getStringExtra("nameOfGym"));
                     b = true;
                     t = (TextView)findViewById(R.id.playerName + i + 1);
                     t.setText(name);
                 }
+
+
 
             }
 
@@ -153,16 +158,29 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
     }
 
     public void confirmReservationClickedT2(View view) {
+        playerNameText = findViewById(R.id.playerName);
+        name = playerNameText.getText().toString();
+        reservation.setTime(spinnerSelectedText);
+        reservation.setDate(selectedDateString);
 
         if(reservation.getPlayerName().equals("")) {
-            boolean b = false;
+            Boolean b = false;
 
-            for(int i = 0; i < 5; i++){
+            for(int i = 5; i < 10; i++) {
                 if (isAvailable(teamTwoNames.get(i))) {
                     teamTwoNames.set(i, name);
                     reservation.setPlayerName(name);
+                    reservation.setCourt("Court 2");
+                    reservation.setTime(spinnerSelectedText);
+                    reservation.setDate(selectedDateString);
+                    reservation.setGym(getIntent().getStringExtra("nameOfGym"));
                     b = true;
+                    t = (TextView)findViewById(R.id.playerName + i + 1);
+                    t.setText(name);
                 }
+
+
+
             }
 
             if(b == false){
@@ -173,6 +191,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             Toast.makeText(getApplicationContext(), "You already reserved a spot " +
                     "in this game.", Toast.LENGTH_LONG).show();
         }
+
+
 
         WelcomeActivity.firebaseHelper.addData(reservation);
     }

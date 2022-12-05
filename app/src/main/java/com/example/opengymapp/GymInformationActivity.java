@@ -19,14 +19,14 @@ public class GymInformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gym_information);
         gymName = (TextView) findViewById(R.id.gymName);
-        gymName.setText(getIntent().getStringExtra("message"));
         name = getIntent().getStringExtra("message");
-
+        gymName.setText(name);
     }
 
     public void createReservation(View view) {
         Intent intent = new Intent(GymInformationActivity.this,
                 CreateReservationActivity.class);
+        intent.putExtra("nameOfGym", "" + name);
         startActivity(intent);
     }
 
