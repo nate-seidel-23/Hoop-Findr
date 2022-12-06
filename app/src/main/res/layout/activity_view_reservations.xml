@@ -12,7 +12,10 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginBottom="@dimen/margin"
-        android:text="Select a Memory to View, Edit, or Delete"/>
+        android:fontFamily="@font/league"
+        android:textSize="@dimen/size"
+        android:textColor="@color/primaryColor"
+        android:text="RESERVATION    INFORMATION"/>
 
 
     <ListView
