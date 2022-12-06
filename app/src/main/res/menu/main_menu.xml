@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/Options"
-        android:title="Options"
-        app:showAsAction="ifRoom"
-        ></item>
+        android:title="logo"
+        android:orderInCategory="22"
+        android:icon="@drawable/hoopfindrlit"
+        app:showAsAction="always" />
     <item
         android:id="@+id/Reservation"
-        android:title="Your Reservation"
+        android:title="YOUR RESERVATION"
         app:showAsAction="never"
         ></item>
     <item
         android:id="@+id/SignOut"
-        android:title="Sign Out"
+        android:title="SIGN OUT"
         app:showAsAction="never"
         ></item>
 </menu>

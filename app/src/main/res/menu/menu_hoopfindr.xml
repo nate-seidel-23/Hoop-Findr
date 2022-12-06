@@ -6,4 +6,9 @@
         android:orderInCategory="79"
         android:icon="@drawable/hoopfindrlit"
         app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/back"
+        android:title="BACK"
+        app:showAsAction="never"
+        ></item>
 </menu>

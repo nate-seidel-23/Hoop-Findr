@@ -21,11 +21,12 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="187dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginStart="112dp"
         android:layout_marginBottom="588dp"
         android:fontFamily="@font/league"
+        android:background="@color/black"
         android:text="CLICK    ON    THE    MARKER!"
         android:textColor="@color/primaryDarkColor"
         android:textColorHighlight="@color/black"
