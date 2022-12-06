@@ -22,6 +22,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+
 import org.checkerframework.checker.units.qual.C;
 
 
@@ -36,6 +39,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
     TextView t;
     Spinner spinner;
     ArrayAdapter<String> adapter;
+    ArrayList<DocumentSnapshot> usersAtGym;
     String spinnerSelectedText = "none";
     public final String TAG = "Denna";
 
@@ -58,6 +62,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                 datePicker.show(getSupportFragmentManager(), "date picker");
             }
         });
+
+        usersAtGym = WelcomeActivity.firebaseHelper.getAllUsers(getIntent().getStringExtra("nameOfGym"));
 
         spinner = findViewById(R.id.timeSelector);
         spinner.setVisibility(View.INVISIBLE);
@@ -93,6 +99,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             TextView t = findViewById(R.id.dateText);
             t.setText(selectedDateString);
             Log.d(TAG, " " + c.get(Calendar.DAY_OF_WEEK));
+
 
             if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.spinner_list,
@@ -229,6 +236,14 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             }
         }
         return optionChose;
+    }
+
+    public String getUsersOnDate(String s){
+        String pName = "";
+        for(int i = 0; i < usersAtGym.size(); i++){
+            pName = usersAtGym.get(i).getData().get("time").toString();
+        }
+        return pName;
     }
 
 

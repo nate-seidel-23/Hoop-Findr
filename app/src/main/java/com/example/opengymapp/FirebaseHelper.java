@@ -27,6 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -188,27 +190,31 @@ certain things from occurring until after the onSuccess is finished.
         void onCallback(ArrayList<GymReservation> myList);
     }
 
-//    public void getAllUsers(String s){
-//        FirebaseFirestore.getInstance()
-//                .collectionGroup("reservationList")
-//                .whereEqualTo("gym", s)
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
-//                        for(DocumentSnapshot snapshot: snapshotList){
-//                            Log.d(TAG, "onSuccess: " + snapshot.getData() + "siuuu");
-//                        }
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d(TAG, "onFailure", e);
-//                    }
-//                });
-//    }
+    public ArrayList getAllUsers(String s){
+        ArrayList<DocumentSnapshot> arrList = new ArrayList<>();
+
+        db.getInstance()
+                .collectionGroup("reservationList")
+                .whereEqualTo("gym", s)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot snapshot: snapshotList){
+                            Log.d(TAG, "onSuccess: " + snapshot.getData() + "siuuu");
+                            arrList.add(snapshot);
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure", e);
+                    }
+                });
+        return arrList;
+    }
 
 
 
