@@ -97,7 +97,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             if(c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.spinner_list,
                         getResources().getStringArray(R.array.weekendTimes));
-                adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_row);
+                adapter2.setDropDownViewResource(R.layout.custom_spinner_dropdown_row);
                 spinner.setAdapter(adapter2);
                 spinner.setOnItemSelectedListener(this);
             }
@@ -151,8 +151,6 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                     t.setText(name);
                 }
 
-
-
             }
 
             if(b == false){
@@ -167,6 +165,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
 
 
         WelcomeActivity.firebaseHelper.addData(reservation);
+//        WelcomeActivity.firebaseHelper.getAllUsers("Community");
     }
 
     public void confirmReservationClickedT2(View view) {
@@ -223,12 +222,12 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         String[] weekday = getResources().getStringArray(R.array.weekdayTimes);
         boolean optionChose = false;
 
-        for(int i = 1; i < weekday.length - 1; i++)
-        if(spinnerSelectedText.equals(getResources().
-                getStringArray(R.array.weekdayTimes)[i])){
-            optionChose = true;
+        for(int i = 1; i < weekday.length - 1; i++) {
+            if (spinnerSelectedText.equals(getResources().
+                    getStringArray(R.array.weekdayTimes)[i])) {
+                optionChose = true;
+            }
         }
-
         return optionChose;
     }
 

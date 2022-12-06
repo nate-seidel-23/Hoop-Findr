@@ -31,6 +31,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
@@ -49,6 +50,7 @@ public class FirebaseHelper {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private ArrayList<GymReservation> reservations;
+    private ArrayList<Map> users;
 
 
     public FirebaseHelper() {
@@ -109,6 +111,7 @@ public class FirebaseHelper {
                         Log.w(TAG, "Error adding user account", e);
                     }
                 });
+        users.add(user);
     }
 
     public void addData(GymReservation g) {
@@ -185,6 +188,30 @@ certain things from occurring until after the onSuccess is finished.
         void onCallback(ArrayList<GymReservation> myList);
     }
 
+//    public void getAllUsers(String s){
+//        FirebaseFirestore.getInstance()
+//                .collectionGroup("reservationList")
+//                .whereEqualTo("gym", s)
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+//                        for(DocumentSnapshot snapshot: snapshotList){
+//                            Log.d(TAG, "onSuccess: " + snapshot.getData() + "siuuu");
+//                        }
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d(TAG, "onFailure", e);
+//                    }
+//                });
+//    }
+
+
+
     // will only need if we incorporate editing the Sign up
 //    public void editData(GymReservation g) {
 //        // edit Memory m to the database
@@ -232,7 +259,7 @@ certain things from occurring until after the onSuccess is finished.
     private void deleteData(GymReservation g, FirestoreCallback firestoreCallback) {
         // delete item w from database
         String docId = g.getDocID();
-        db.collection("users").document(uid).collection("myMemoryList")
+        db.collection("users").document(uid).collection("reservationList")
                 .document(docId)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class GymInformationActivity extends AppCompatActivity {
     TextView gymName;
 
-    public final String TAG = "Halvadia and Seidel";
+    public final String TAG = "Denna";
     String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
