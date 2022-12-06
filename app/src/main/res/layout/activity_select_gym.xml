@@ -27,6 +27,7 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/margin"
         android:text="COMMUNITY"
+        android:background="@drawable/custom_button"
         android:fontFamily="@font/league"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -38,6 +39,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:fontFamily="@font/league"
+        android:background="@drawable/custom_button"
         android:layout_margin="@dimen/margin"
         android:text="BIRCHWOOD"
         android:textSize="20sp"
@@ -54,6 +56,7 @@
         android:textSize="20sp"
         android:layout_margin="@dimen/margin"
         android:textStyle="bold"
+        android:background="@drawable/custom_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
