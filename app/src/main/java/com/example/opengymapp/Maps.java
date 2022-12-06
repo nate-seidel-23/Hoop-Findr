@@ -76,7 +76,6 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback{
                 Intent intent1 = new Intent(this, SelectGymActivity.class);
                 this.startActivity(intent1);
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

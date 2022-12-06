@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "478810896939",
+    "project_id": "hoopfindr",
+    "storage_bucket": "hoopfindr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478810896939:android:459f899af52d29c554486e",
+        "android_client_info": {
+          "package_name": "com.example.opengymapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478810896939-v06hij3e51rg5bpop70kf5dljdgalep1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQy6HwEzbZTFTMYAN4udgiKoUxu1QhFMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478810896939-v06hij3e51rg5bpop70kf5dljdgalep1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
