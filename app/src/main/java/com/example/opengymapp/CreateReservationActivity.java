@@ -148,7 +148,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             }
         }
 
-        // use this to fix names not appearing
+////         use this to fix names not appearing
 //        if(hasReservation(selectedDateString, spinnerSelectedText, getIntent().getStringExtra(("nameOfGym")))){
 //            teamTwoNames.remove(4);
 //            teamTwoNames.add(0, )

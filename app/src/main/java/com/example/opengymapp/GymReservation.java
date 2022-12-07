@@ -79,7 +79,7 @@ public class GymReservation implements Parcelable{
     }
 
     public String toString() {
-        return "Name: " + playerName + " " + date + " " + gym;
+        return "Name: " + playerName + " Date/Time: " + date + " " + time + " Gym: " + gym;
     }
 
     public String getDate() {
