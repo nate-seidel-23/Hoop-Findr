@@ -14,7 +14,7 @@
         ></item>
     <item
         android:id="@+id/reservation"
-        android:title="YOUR RESERVATION"
+        android:title="YOUR RESERVATIONS"
         app:showAsAction="never"
         ></item>
 

@@ -50,7 +50,7 @@ public class GymInformationActivity extends AppCompatActivity {
     @SuppressLint("RestrictedApi")
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_2, menu);
+        inflater.inflate(R.menu.main_menu, menu);
 
         if(menu instanceof MenuBuilder){
             MenuBuilder m = (MenuBuilder) menu;
@@ -58,11 +58,17 @@ public class GymInformationActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.SignOut:
                 Intent intent1 = new Intent(this, SignOut.class);
                 this.startActivity(intent1);
+                return true;
+            case R.id.Reservation:
+                Intent intent2 = new Intent(this, ViewReservationsActivity.class);
+                this.startActivity(intent2);
                 return true;
 
             default:

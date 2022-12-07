@@ -59,26 +59,5 @@ public class Maps extends AppCompatActivity implements OnMapReadyCallback{
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(birchwood));
 
     }
-    @SuppressLint("RestrictedApi")
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_hoopfindr, menu);
-
-        if(menu instanceof MenuBuilder){
-            MenuBuilder m = (MenuBuilder) menu;
-            m.setOptionalIconsVisible(true);
-        }
-        return true;
-    }
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.back:
-                Intent intent1 = new Intent(this, SelectGymActivity.class);
-                this.startActivity(intent1);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }
 

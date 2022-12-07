@@ -14,9 +14,10 @@ import java.util.ArrayList;
 
 public class ViewReservationsActivity extends AppCompatActivity {
 
-    private ListView myMemoryListView;
+    private ListView myReservationListView;
     public static final String CHOSEN_RESERVATION = "chosen reservation";
     private GymReservation g;
+    ArrayAdapter<GymReservation> listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +25,19 @@ public class ViewReservationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_reservations);
 
         // find listView in xml
-        myMemoryListView = findViewById(R.id.allMemoriesListView);
+        myReservationListView = findViewById(R.id.allReservationsListView);
         // get ArrayList of data from firebase
         ArrayList<GymReservation> myList = WelcomeActivity.firebaseHelper.getGymArrayList();
         // bind data to the ArrayAdapter (this is a default adapter
         // The text shown is based on the Memory class toString
-        ArrayAdapter<GymReservation> listAdapter = new ArrayAdapter<>(
+        listAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, myList);
         // attaches the listAdapter to my listView
-        myMemoryListView.setAdapter(listAdapter);
+        myReservationListView.setAdapter(listAdapter);
         // if did custom array set up, use this one
         findViewById(R.id.cancelReservationB).setVisibility(View.INVISIBLE);
         // Create listener to listen for when a Food from the specific Category list is clicked on
-        myMemoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        myReservationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 findViewById(R.id.cancelReservationB).setVisibility(View.VISIBLE);
@@ -48,5 +49,6 @@ public class ViewReservationsActivity extends AppCompatActivity {
 
     public void cancelClicked(View view){
         WelcomeActivity.firebaseHelper.deleteData(g);
+        listAdapter.remove(g);
     }
 }

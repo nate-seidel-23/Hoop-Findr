@@ -2,8 +2,12 @@ package com.example.opengymapp;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.fragment.app.DialogFragment;
 import android.widget.Toast;
 
@@ -300,6 +305,34 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             }
         }
         return false;
+    }
+    @SuppressLint("RestrictedApi")
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+
+        if(menu instanceof MenuBuilder){
+            MenuBuilder m = (MenuBuilder) menu;
+            m.setOptionalIconsVisible(true);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.SignOut:
+                Intent intent1 = new Intent(this, SignOut.class);
+                this.startActivity(intent1);
+                return true;
+            case R.id.Reservation:
+                Intent intent2 = new Intent(this, ViewReservationsActivity.class);
+                this.startActivity(intent2);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

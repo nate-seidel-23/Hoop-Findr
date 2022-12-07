@@ -9,7 +9,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/Reservation"
-        android:title="YOUR RESERVATION"
+        android:title="YOUR RESERVATIONS"
         app:showAsAction="never"
         ></item>
     <item
