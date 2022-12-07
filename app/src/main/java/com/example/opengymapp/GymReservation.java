@@ -9,25 +9,25 @@ public class GymReservation implements Parcelable{
     private String date;
     private String gym;
     private String time;
-    private String court;
+    private String team;
     private String docID;
 
-    public GymReservation(String playerName, String date, String gym, String time, String court,
+    public GymReservation(String playerName, String date, String gym, String time, String team,
                           String docID) {
         this.playerName = playerName;
         this.date = date;
         this.gym = gym;
         this.time = time;
-        this.court = court;
+        this.team = team;
         this.docID = docID;
     }
 
-    public GymReservation(String playerName, String date, String gym, String time, String court){
+    public GymReservation(String playerName, String date, String gym, String time, String team){
         this.playerName = playerName;
         this.date = date;
         this.gym = gym;
         this.time = time;
-        this.court = court;
+        this.team = team;
         docID = "No docID yet";
     }
 
@@ -36,7 +36,7 @@ public class GymReservation implements Parcelable{
         date = "";
         gym = "";
         time = "";
-        court = "";
+        team = "";
         docID = "No docID yet";
     }
 
@@ -45,7 +45,7 @@ public class GymReservation implements Parcelable{
         date = parcel.readString();
         gym = parcel.readString();
         time = parcel.readString();
-        court = parcel.readString();
+        team = parcel.readString();
         docID = parcel.readString();
     }
 
@@ -55,7 +55,7 @@ public class GymReservation implements Parcelable{
         dest.writeString(date);
         dest.writeString(gym);
         dest.writeString(time);
-        dest.writeString(court);
+        dest.writeString(team);
         dest.writeString(docID);
     }
 
@@ -122,11 +122,11 @@ public class GymReservation implements Parcelable{
         this.time = time;
     }
 
-    public String getCourt() {
-        return court;
+    public String getTeam() {
+        return team;
     }
 
-    public void setCourt(String court) {
-        this.court = court;
+    public void setTeam(String team) {
+        this.team = team;
     }
 }
