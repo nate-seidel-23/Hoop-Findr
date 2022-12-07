@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class ViewReservationsActivity extends AppCompatActivity {
 
     private ListView myReservationListView;
-    public static final String CHOSEN_RESERVATION = "chosen reservation";
     private GymReservation g;
     ArrayAdapter<GymReservation> listAdapter;
 

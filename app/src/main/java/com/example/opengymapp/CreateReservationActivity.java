@@ -144,6 +144,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         teamTwoNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
 
         getUsersOnDate(selectedDateString, spinnerSelectedText);
+
         for(int i = 0; i < 10; i++){
             nameTemp = (TextView)findViewById(textViewIds[i]);
             if(i < 5){
@@ -153,11 +154,6 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             }
         }
 
-////         use this to fix names not appearing
-//        if(hasReservation(selectedDateString, spinnerSelectedText, getIntent().getStringExtra(("nameOfGym")))){
-//            teamTwoNames.remove(4);
-//            teamTwoNames.add(0, )
-//        }
 
     }
 
@@ -293,7 +289,12 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                     teamTwoNames.add(0, pName);
                 }
             }
+
         }
+
+//        if(hasReservation(selectedDateString, spinnerSelectedText, name)){
+//            teamOneNames
+//        }
     }
 
     public boolean hasReservation(String d, String t, String n){
