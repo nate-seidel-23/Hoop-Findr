@@ -24,34 +24,45 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/league"
-        android:text="Monday - Friday: 5-8 PM"
+        android:text="Monday - Friday:\t\t5-8 PM"
         android:textColor="@color/primaryColor"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/league"
-        android:text="Saturday - Sunday: 1-6 PM"
+        android:text="Saturday - Sunday:\t\t1-6 PM"
         android:textColor="@color/primaryColor"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageOfCourt"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_width="350dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/birchwood" />
+
 
     <Button
         android:id="@+id/viewReservationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/league"
         android:background="@drawable/custom_button"
         android:onClick="viewReservation"
@@ -82,4 +93,6 @@
         android:onClick="viewMap"
         android:text="View on Map"
         android:textStyle="bold" />
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>

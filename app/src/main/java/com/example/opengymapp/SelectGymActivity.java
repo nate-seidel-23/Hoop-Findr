@@ -29,6 +29,7 @@ public class SelectGymActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(SelectGymActivity.this, GymInformationActivity.class);
                 intent.putExtra("message","Community");
+                intent.putExtra("image", R.drawable.community);
                 startActivity(intent);
             }
         });
@@ -37,6 +38,7 @@ public class SelectGymActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(SelectGymActivity.this, GymInformationActivity.class);
                 intent.putExtra("message","Birchwood");
+                intent.putExtra("image", R.drawable.birchwood);
                 startActivity(intent);
             }
         });
@@ -45,6 +47,7 @@ public class SelectGymActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(SelectGymActivity.this, GymInformationActivity.class);
                 intent.putExtra("message","YMCA");
+                intent.putExtra("image", R.drawable.ymca);
                 startActivity(intent);
             }
         });

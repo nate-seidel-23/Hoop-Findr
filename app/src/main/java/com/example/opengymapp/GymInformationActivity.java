@@ -11,11 +11,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GymInformationActivity extends AppCompatActivity {
     TextView gymName;
-
+    ImageView image;
     public final String TAG = "Denna";
     String name;
     @Override
@@ -25,6 +26,9 @@ public class GymInformationActivity extends AppCompatActivity {
         gymName = (TextView) findViewById(R.id.gymName);
         name = getIntent().getStringExtra("message");
         gymName.setText(name);
+        image = findViewById(R.id.imageOfCourt);
+        image.setImageResource(getIntent().getIntExtra("image", 0));
+
     }
 
     public void createReservation(View view) {

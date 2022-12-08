@@ -23,19 +23,12 @@ public class ViewReservationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reservations);
 
-        // find listView in xml
         myReservationListView = findViewById(R.id.allReservationsListView);
-        // get ArrayList of data from firebase
         ArrayList<GymReservation> myList = WelcomeActivity.firebaseHelper.getGymArrayList();
-        // bind data to the ArrayAdapter (this is a default adapter
-        // The text shown is based on the Memory class toString
         listAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, myList);
-        // attaches the listAdapter to my listView
         myReservationListView.setAdapter(listAdapter);
-        // if did custom array set up, use this one
         findViewById(R.id.cancelReservationB).setVisibility(View.INVISIBLE);
-        // Create listener to listen for when a Food from the specific Category list is clicked on
         myReservationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -49,5 +42,7 @@ public class ViewReservationsActivity extends AppCompatActivity {
     public void cancelClicked(View view){
         WelcomeActivity.firebaseHelper.deleteData(g);
         listAdapter.remove(g);
+        listAdapter.notifyDataSetChanged();
+        findViewById(R.id.cancelReservationB).setVisibility(View.INVISIBLE);
     }
 }

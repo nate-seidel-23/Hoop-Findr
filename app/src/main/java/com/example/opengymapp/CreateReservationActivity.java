@@ -45,6 +45,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
     ArrayList<DocumentSnapshot> usersAtGym;
     String spinnerSelectedText = "none";
     int[] textViewIds;
+    String nameOfGym;
     public final String TAG = "Denna";
 
 
@@ -67,8 +68,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
             }
         });
 
-        usersAtGym = WelcomeActivity.firebaseHelper.getAllUsers(getIntent().getStringExtra("nameOfGym"));
 
+        nameOfGym = getIntent().getStringExtra("nameOfGym");
         spinner = findViewById(R.id.timeSelector);
         spinner.setVisibility(View.INVISIBLE);
         l = findViewById(R.id.signUpLayout);
@@ -76,9 +77,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         textViewIds = new int[] { R.id.playerName1, R.id.playerName2, R.id.playerName3,
                 R.id.playerName4, R.id.playerName5, R.id.playerName6, R.id.playerName7, R.id.playerName8,
                 R.id.playerName9, R.id.playerName10 };
-
         reservation = new GymReservation("No name","","","","");
-
+        usersAtGym = WelcomeActivity.firebaseHelper.getAllUsers(nameOfGym);
 
     }
 
@@ -135,16 +135,18 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         spinnerSelectedText = parent.getItemAtPosition(position).toString();
-        l.setVisibility(View.VISIBLE);
+        TextView t = findViewById(R.id.timeText);
         if(timeSelected()) {
-            TextView t = findViewById(R.id.timeText);
             t.setText(spinnerSelectedText);
+            l.setVisibility(View.VISIBLE);
         }
-        teamOneNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
-        teamTwoNames = new ArrayList<String>(Arrays.asList("", "" ,"", "", ""));
+        else{
+            t.setText("");
+        }
+        teamOneNames = new ArrayList<>(Arrays.asList("", "" ,"", "", ""));
+        teamTwoNames = new ArrayList<>(Arrays.asList("", "" ,"", "", ""));
 
         getUsersOnDate(selectedDateString, spinnerSelectedText);
-
         for(int i = 0; i < 10; i++){
             nameTemp = (TextView)findViewById(textViewIds[i]);
             if(i < 5){
@@ -165,7 +167,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         playerNameText = findViewById(R.id.playersName);
         name = playerNameText.getText().toString();
 
-        if(!name.equals("")) {
+        if(!name.equals("") && timeSelected()) {
             if (!hasReservation(selectedDateString, spinnerSelectedText, getIntent().getStringExtra("nameOfGym"))) {
                 Boolean b = false;
 
@@ -184,9 +186,9 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                     }
                 }
 
-                if (b == false) {
+                if (!b) {
                     Toast.makeText(getApplicationContext(), "Sorry " + name
-                            + " this team is full this day.", Toast.LENGTH_LONG).show();
+                            + ", this team is full this game.", Toast.LENGTH_LONG).show();
                 } else {
                     WelcomeActivity.firebaseHelper.addData(reservation);
                 }
@@ -195,19 +197,17 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                         "in this game.", Toast.LENGTH_LONG).show();
             }
         }else{
-            Toast.makeText(getApplicationContext(), "Please enter your name ",
+            Toast.makeText(getApplicationContext(), "Please enter your name/select a time ",
                     Toast.LENGTH_LONG).show();
         }
 
-
-//        WelcomeActivity.firebaseHelper.getAllUsers("Community");
     }
 
     public void confirmReservationClickedT2(View view) {
         playerNameText = findViewById(R.id.playersName);
         name = playerNameText.getText().toString();
 
-        if(!name.equals("")){
+        if(!name.equals("") && timeSelected()){
             if(!hasReservation(selectedDateString, spinnerSelectedText,
                     getIntent().getStringExtra("nameOfGym"))) {
                 Boolean b = false;
@@ -227,7 +227,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                     }
                 }
 
-                if(b == false){
+                if(!b){
                     Toast.makeText(getApplicationContext(),"Sorry " + name
                             + " this team is full this day.", Toast.LENGTH_LONG).show();
                 }else {
@@ -238,37 +238,28 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                         "in this game.", Toast.LENGTH_LONG).show();
             }
         }else{
-            Toast.makeText(getApplicationContext(), "Please enter your name ",
+            Toast.makeText(getApplicationContext(), "Please enter your name/ Select a time",
                     Toast.LENGTH_LONG).show();
         }
 
 
-
-//        WelcomeActivity.firebaseHelper.getAllUsers("Community");
     }
 
 
-    // we will need to change this method to confirm that the user hasn't previously entered
-    // a name on that date/time
     public boolean isAvailable(String s){
-            if(s.equals("")) {
-                return true;
-            }else{
-                return false;
-            }
+        if(s.equals("")) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean timeSelected(){
 
-        String[] weekday = getResources().getStringArray(R.array.weekdayTimes);
-        String [] weekend = getResources().getStringArray(R.array.weekendTimes);
         boolean optionChose = false;
 
-        for(int i = 1; i < weekday.length - 1; i++) {
-            if (spinnerSelectedText.equals(getResources().
-                    getStringArray(R.array.weekdayTimes)[i])) {
-                optionChose = true;
-            }
+        if (!spinnerSelectedText.equalsIgnoreCase("Select Time")) {
+            optionChose = true;
         }
         return optionChose;
     }
@@ -292,9 +283,6 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
 
         }
 
-//        if(hasReservation(selectedDateString, spinnerSelectedText, name)){
-//            teamOneNames
-//        }
     }
 
     public boolean hasReservation(String d, String t, String n){
@@ -307,6 +295,7 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         }
         return false;
     }
+
     @SuppressLint("RestrictedApi")
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -330,7 +319,11 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                 Intent intent2 = new Intent(this, ViewReservationsActivity.class);
                 this.startActivity(intent2);
                 return true;
-
+            case R.id.back:
+                Intent intent3 = new Intent(this, GymInformationActivity.class);
+                intent3.putExtra("message", "" + nameOfGym);
+                this.startActivity(intent3);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
