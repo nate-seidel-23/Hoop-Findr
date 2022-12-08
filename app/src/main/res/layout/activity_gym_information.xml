@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="@dimen/margin"
-        android:text="Gym Name"
+        android:text="GymName"
         android:textColor="@color/primaryColor"
         android:textSize="44sp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/league"
-        android:text="Monday - Friday:\t\t5-8 PM"
+        android:text="Monday - Friday:\t5-8 PM"
         android:textColor="@color/primaryColor"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -43,7 +43,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/league"
-        android:text="Saturday - Sunday:\t\t1-6 PM"
+        android:text="Saturday - Sunday:\t1-6 PM"
         android:textColor="@color/primaryColor"
         android:textSize="20sp"
         android:textStyle="bold" />

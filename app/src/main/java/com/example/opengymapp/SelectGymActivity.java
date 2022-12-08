@@ -53,12 +53,6 @@ public class SelectGymActivity extends AppCompatActivity {
         });
     }
 
-//    public void gymSelected(View view){
-//        Intent intent = new Intent(SelectGymActivity.this,
-//                GymInformationActivity.class);
-//        startActivity(intent);
-//    }
-
     @SuppressLint("RestrictedApi")
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

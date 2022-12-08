@@ -93,7 +93,8 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         selectedDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         Log.d(TAG, " " + c.get(Calendar.YEAR) + c.get(Calendar.DAY_OF_MONTH));
-
+        TextView textView = findViewById(R.id.messageText);
+        textView.setVisibility(View.INVISIBLE);
         Calendar today = Calendar.getInstance();
         Date currentDate = new Date(today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH),
                 today.get(Calendar.YEAR));

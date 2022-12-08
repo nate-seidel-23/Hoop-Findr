@@ -28,7 +28,7 @@
         android:fontFamily="@font/league"
         android:background="@color/black"
         android:text="CLICK    ON    THE    MARKER!"
-        android:textColor="@color/primaryDarkColor"
+        android:textColor="@color/primaryColor"
         android:textColorHighlight="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

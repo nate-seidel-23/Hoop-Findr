@@ -130,7 +130,6 @@ public class FirebaseHelper {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        // This will set the docID key for the Memory that was just added.
                         db.collection("users").document(uid).collection("reservationList").
                                 document(documentReference.getId()).update("docID", documentReference.getId());
                         Log.i(TAG, "just added " + g.getPlayerName() + g.getGym() + g.getDate());

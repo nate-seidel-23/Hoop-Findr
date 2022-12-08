@@ -3,12 +3,12 @@ package com.example.opengymapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,9 @@ public class ViewReservationsActivity extends AppCompatActivity {
 
     private ListView myReservationListView;
     private GymReservation g;
+    TextView t ;
     ArrayAdapter<GymReservation> listAdapter;
+    ArrayList<GymReservation> myList;
 
     @SuppressLint("ResourceType")
     @Override
@@ -25,7 +27,13 @@ public class ViewReservationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_reservations);
 
         myReservationListView = findViewById(R.id.allReservationsListView);
-        ArrayList<GymReservation> myList = WelcomeActivity.firebaseHelper.getGymArrayList();
+        t = (TextView)findViewById(R.id.reservationMessage);
+        myList = WelcomeActivity.firebaseHelper.getGymArrayList();
+        if(myList.size() == 0){
+            t.setText("NO     RESERVATIONS");
+        }else{
+            t.setText("SELECT     A     RESERVATION");
+        }
         listAdapter = new ArrayAdapter<GymReservation>(
                 this, R.layout.list_white_text, myList);
         myReservationListView.setAdapter(listAdapter);
@@ -45,5 +53,10 @@ public class ViewReservationsActivity extends AppCompatActivity {
         listAdapter.remove(g);
         listAdapter.notifyDataSetChanged();
         findViewById(R.id.cancelReservationB).setVisibility(View.INVISIBLE);
+        if(myList.size() == 0){
+            t.setText("NO     RESERVATIONS");
+        }else{
+            t.setText("SELECT     A     RESERVATION");
+        }
     }
 }

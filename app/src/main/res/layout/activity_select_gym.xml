@@ -10,12 +10,13 @@
 
     <TextView
         android:id="@+id/Welcome"
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_margin="@dimen/margin"
         android:fontFamily="@font/league"
-        android:text="Select    Gym"
+        android:text="Select\t\tGym"
         android:textColor="@color/primaryColor"
         android:textSize="40sp"
         android:textStyle="bold" />
