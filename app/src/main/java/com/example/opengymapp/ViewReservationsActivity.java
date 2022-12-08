@@ -18,6 +18,7 @@ public class ViewReservationsActivity extends AppCompatActivity {
     private GymReservation g;
     ArrayAdapter<GymReservation> listAdapter;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class ViewReservationsActivity extends AppCompatActivity {
         myReservationListView = findViewById(R.id.allReservationsListView);
         ArrayList<GymReservation> myList = WelcomeActivity.firebaseHelper.getGymArrayList();
         listAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1, myList);
+                this, R.id.sample, myList);
         myReservationListView.setAdapter(listAdapter);
         findViewById(R.id.cancelReservationB).setVisibility(View.INVISIBLE);
         myReservationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -319,11 +319,6 @@ public class CreateReservationActivity extends AppCompatActivity implements Date
                 Intent intent2 = new Intent(this, ViewReservationsActivity.class);
                 this.startActivity(intent2);
                 return true;
-            case R.id.back:
-                Intent intent3 = new Intent(this, GymInformationActivity.class);
-                intent3.putExtra("message", "" + nameOfGym);
-                this.startActivity(intent3);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

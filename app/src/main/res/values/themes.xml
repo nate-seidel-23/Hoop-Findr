@@ -18,4 +18,8 @@
         <item name="fontFamily">@font/league</item>
         <item name="android:textColor">@color/primaryColor</item>
     </style>
+    <style name="ListFont" parent="@android:style/Widget.ListView">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:typeface">@font/league</item>
+    </style>
 </resources>
