@@ -26,8 +26,8 @@ public class ViewReservationsActivity extends AppCompatActivity {
 
         myReservationListView = findViewById(R.id.allReservationsListView);
         ArrayList<GymReservation> myList = WelcomeActivity.firebaseHelper.getGymArrayList();
-        listAdapter = new ArrayAdapter<>(
-                this, R.id.sample, myList);
+        listAdapter = new ArrayAdapter<GymReservation>(
+                this, R.layout.list_white_text, myList);
         myReservationListView.setAdapter(listAdapter);
         findViewById(R.id.cancelReservationB).setVisibility(View.INVISIBLE);
         myReservationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

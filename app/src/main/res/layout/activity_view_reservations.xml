@@ -15,7 +15,7 @@
         android:fontFamily="@font/league"
         android:textSize="@dimen/size"
         android:textColor="@color/primaryColor"
-        android:text="RESERVATION\t\tINFORMATION"/>
+        android:text="RESERVATION  INFORMATION"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
         android:fontFamily="@font/league"
         android:textSize="25sp"
         android:textColor="@color/primaryColor"
-        android:text="Select \ta\t reservation"/>
+        android:text="SELECT  A  RESERVATION"/>
 
 
     <ListView
