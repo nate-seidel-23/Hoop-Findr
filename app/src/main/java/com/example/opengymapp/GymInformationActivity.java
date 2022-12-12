@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class GymInformationActivity extends AppCompatActivity {
     TextView gymName;
     ImageView image;
-    public final String TAG = "Denna";
+    public final String TAG = "TAG";
     String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
