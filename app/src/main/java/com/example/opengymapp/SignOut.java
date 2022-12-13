@@ -10,7 +10,7 @@ import android.view.View;
 
 public class SignOut extends AppCompatActivity {
 
-    public final String TAG = "TAG";
+    public final String TAG = "Halvadia";
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

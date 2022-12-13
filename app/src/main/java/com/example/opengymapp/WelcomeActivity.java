@@ -24,7 +24,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     String email, password;
     public static FirebaseHelper firebaseHelper;
-    public final String TAG = "TAG";
+    public final String TAG = "Denna";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
